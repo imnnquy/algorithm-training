@@ -1,0 +1,5 @@
+env3.7/
+venv/
+venv1/
+*.iml
+.idea/
