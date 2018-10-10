@@ -1,14 +1,13 @@
-def calc_mins(_t, _n):
-    if _t[0] > 15:
-        return 15
-    for i in range(1, _n):
-        if _t[i] - _t[i - 1] > 15:
-            return t[i - 1] + 15
-    if 90 - _t[_n - 1] > 15:
-        return _t[n - 1] + 15
-    return 90
+def calc_max_dist(_a, _n):
+    pos_min, pos_max = 0, 0
+    for i in range(_n):
+        if _a[i] == n:
+            pos_max = i
+        if _a[i] == 1:
+            pos_min = i
+    return max(n - 1 - pos_max, n - 1 - pos_min, pos_max, pos_min)
 
 
 n = int(input())
-t = list(map(int, input().split()))
-print(calc_mins(t, n))
+a = list(map(int, input().split()))
+print(calc_max_dist(a, n))

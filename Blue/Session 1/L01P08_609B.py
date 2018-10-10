@@ -1,14 +1,11 @@
-def calc_mins(_t, _n):
-    if _t[0] > 15:
-        return 15
-    for i in range(1, _n):
-        if _t[i] - _t[i - 1] > 15:
-            return t[i - 1] + 15
-    if 90 - _t[_n - 1] > 15:
-        return _t[n - 1] + 15
-    return 90
+n, m = map(int, input().split())
+a = list(map(int, input().split()))
 
-
-n = int(input())
-t = list(map(int, input().split()))
-print(calc_mins(t, n))
+total = 0
+type_list = [0] * m
+for i in range(n):
+    type_list[a[i] - 1] += 1
+for j in range(m - 1):
+    for k in range(j + 1, m):
+        total += type_list[j] * type_list[k]
+print(total)
