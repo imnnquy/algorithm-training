@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/572/A
+
+
 def check_arrays(_a, _b, _k, _m):
     if _a[k - 1] >= _b[-m]:
         return 'NO'

@@ -1,3 +1,6 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/430/B
+
 
 def destroy_balls(_a, _b, _x):
     if len(_a) == 0 or len(_b) == 0:

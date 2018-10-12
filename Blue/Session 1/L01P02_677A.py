@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/677/A
+
+
 def cal_road_width(_a, _h):
     road_width = 0
     for ai in _a:

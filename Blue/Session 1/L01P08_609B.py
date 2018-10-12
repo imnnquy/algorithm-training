@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/609/B
+
+
 n, m = map(int, input().split())
 a = list(map(int, input().split()))
 

@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/676/A
+
+
 def calc_max_dist(_a, _n):
     pos_min, pos_max = 0, 0
     for i in range(_n):

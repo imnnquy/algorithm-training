@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/242/B
+
+
 def check_cover(_l, _r, _n):
     min_left, max_right = _l[0], _r[0]
     pos = 0

@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/691/A
+
+
 def check_jacket(_a, _n):
     un_fastened = 0
     if _n == 1:

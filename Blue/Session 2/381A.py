@@ -1,3 +1,4 @@
+# Problem from Codeforces
 # http://codeforces.com/contest/381/problem/A
 
 n = int(input())

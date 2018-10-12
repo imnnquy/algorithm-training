@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/378/B
+
+
 def calc_chances_matrix(_n, _a, _b):
     k = n // 2
     chances_matrix = [[1] * k + [0] * (n - k) for j in range(2)]

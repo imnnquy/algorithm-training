@@ -1,3 +1,7 @@
+# Problem from Codeforces
+# http://codeforces.com/problemset/problem/673/A
+
+
 def calc_mins(_t, _n):
     if _t[0] > 15:
         return 15
