@@ -1,5 +1,5 @@
 #!/bin/python3
-
+# https://www.hackerrank.com/challenges/queens-attack-2/problem
 
 # Complete the queensAttack function below.
 def queensAttack(n, k, r_q, c_q, obstacles):
