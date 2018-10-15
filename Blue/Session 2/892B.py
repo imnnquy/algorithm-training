@@ -12,7 +12,7 @@ for i in range(n - 1, 0, -1):
             total_people -= (L[i] - last_kill)
             last_kill = L[i] - 1
         else:
-            total_people -= i
+            total_people -= (i - last_kill)
             break
     else:
         last_kill = last_kill - 1 if last_kill > 0 else 0
