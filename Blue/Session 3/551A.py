@@ -41,3 +41,14 @@
 #
 # In the third sample, students 2 and 5 share the first position with highest rating, student 4 is next with third position, and students 1 and 3 are the last sharing fourth position.
 
+n = int(input())
+a = list(map(int, input().split()))
+bsorted = sorted(a, key=lambda x: -x)
+ranking_list = []
+
+for i in range(n):
+    for j in range(n):
+        if a[i] == bsorted[j]:
+            ranking_list.append(j + 1)
+            break
+print(*ranking_list, sep=' ')
