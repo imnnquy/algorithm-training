@@ -1,5 +1,5 @@
 # Problem from UVA
-# https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=1876
+# https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=3359
 
 # Your government has finally solved the
 # problem of universal health care! Now
@@ -60,34 +60,100 @@
 # 1
 # 2
 
-import queue
+
+class Node:
+    def __init__(self, data_val=None):
+        self.data_val = data_val
+        self.next_node = None
+
+
+class MyLinkedList:
+    def __init__(self):
+        self.head_node = None
+        self.tail_node = self.head_node
+
+    def print_list(self):
+        print_node = self.head_node
+        while True:
+            if print_node.next_node is None:
+                print(print_node.data_val, end='')
+                break
+            else:
+                print(print_node.data_val, end=' ')
+                print_node = print_node.next_node
+        print('---')
+
+    def add_node(self, value=None):
+        new_node = Node(value)
+        if self.tail_node is not None:
+            self.tail_node.next_node = new_node
+            self.tail_node = new_node
+        else:
+            self.head_node = new_node
+            self.tail_node = new_node
+
+    def remove_head(self):
+        head_value = self.head_node.data_val
+        if self.head_node == self.tail_node:
+            self.head_node = None
+            self.tail_node = None
+        else:
+            self.head_node = self.head_node.next_node
+        return head_value
+
+    def remove_node(self, val_to_remove):
+        cur_node = self.head_node
+        cur_pre_node = None
+        while True:
+            if cur_node is None:
+                return
+            if cur_node.data_val == val_to_remove:
+                if cur_pre_node is not None:
+                    cur_pre_node.next_node = cur_node.next_node
+                else:
+                    self.head_node = cur_node.next_node
+                if cur_node.next_node is None:
+                    self.tail_node = cur_pre_node
+                return
+            else:
+                cur_pre_node = cur_node
+                cur_node = cur_node.next_node
+
+    def add_head(self, val_to_add):
+        new_node = Node(val_to_add)
+        if self.head_node is not None:
+            new_node.next_node = self.head_node
+            self.head_node = new_node
+        else:
+            self.head_node = new_node
+            self.tail_node = new_node
+
 
 results = []
 while True:
-    cur_input = int(input())
-    if cur_input == 0:
-        break
+    P, C = map(int, input().split())
 
-    cur_queue = queue.Queue()
-    for i in range(cur_input):
-        cur_queue.put(i + 1)
+    if P == 0:
+        break
+    P = min(P, C)
+
+    cur_queue = MyLinkedList()
+    for i in range(P):
+        cur_queue.add_node(i + 1)
     cur_result = []
-    while True:
-        if cur_queue.qsize() >= 2:
-            cur_result.append(cur_queue.get())
-            cur_queue.put(cur_queue.get())
-        elif cur_queue.qsize() >= 1:
-            cur_result.append(cur_queue.get())
+    for i in range(C):
+        Ci = input()
+        if Ci is 'N':
+            cur_treating = cur_queue.remove_head()
+            cur_result.append(cur_treating)
+            cur_queue.add_node(cur_treating)
         else:
-            break
+            expedited_index = int(Ci.split()[1])
+            cur_queue.remove_node(expedited_index)
+            cur_queue.add_head(expedited_index)
+
     results.append(cur_result)
 
 for i in range(len(results)):
-    remaining_card = results[i].pop()
-    if len(results[i]) > 0:
-        end_by = ' '
-    else:
-        end_by = ''
-    print('Discarded cards:', end=end_by)
-    print(*results[i], sep=', ')
-    print('Remaining card: ' + str(remaining_card))
+    print('Case %d:' %(i + 1))
+    print(*results[i], sep='\n')
