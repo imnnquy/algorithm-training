@@ -45,7 +45,7 @@ for i in range(n):
 
 for i in range(n):
     for j in range(m):
-        if matrix[i][j] == 0: # not crossed yet
+        if matrix[i][j] == 0:  # not crossed yet
             for row_checker in range(m):
                 if row_checker != j and rectangular[i][row_checker] == rectangular[i][j]:
                     matrix[i][row_checker] = 1
