@@ -63,3 +63,18 @@
 # ACC
 # ACC
 
+str11 = input().strip().replace(';', '').replace('-', '').replace('_', '').lower()
+str12 = input().strip().replace(';', '').replace('-', '').replace('_', '').lower()
+str13 = input().strip().replace(';', '').replace('-', '').replace('_', '').lower()
+
+n = int(input())
+for i in range(n):
+    ai = input().strip().replace(';', '').replace('-', '').replace('_', '').lower()
+    if len(ai) != len(str11) + len(str12) + len(str13):
+        print('WA')
+        continue
+    if (str11 + str12 + str13) == ai or (str11 + str13 + str12) == ai or (str12 + str11 + str13) == ai or (
+            str12 + str13 + str11) == ai or (str13 + str11 + str12) == ai or (str13 + str12 + str11) == ai:
+        print('ACC')
+        continue
+    print('WA')
