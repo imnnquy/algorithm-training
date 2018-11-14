@@ -46,30 +46,37 @@
 
 
 n, k = map(int, input().split())
-best_case = 0
-worst_case = 0
 
 passwords = []
 for i in range(n):
     passwords.append(input())
 
+passwords = sorted(passwords, key=lambda x: -len(x))
 correct_pwd = input()
-
-place_to_break = n - 1
-got_pwd = False
-same_length = 0
-time_taken = 0
-wrong_counter = 0
+right_break_point = n - 1
+left_break_point = 0
 for i in range(n - 1, -1, -1):
-    if wrong_counter >= k:
-        time_taken += 5
-        wrong_counter = 0
-    else:
-        time_taken += 1
-        wrong_counter += 1
-    if got_pwd and len(passwords[i]) != len(correct_pwd):
-        same_length = place_to_break - i + 1
-    if len(passwords[i]) == len(correct_pwd):
-        place_to_break = i
-        got_pwd = True
+    if len(correct_pwd) == len(passwords[i]):
+        right_break_point = i
+        break
 
+for i in range(right_break_point, -1, -1):
+    if len(correct_pwd) != len(passwords[i]):
+        left_break_point = i + 1
+        break
+
+same_length_list = passwords[left_break_point:right_break_point + 1]
+
+number_of_corrects = 0
+for i in range(len(same_length_list)):
+    if same_length_list[i] == correct_pwd:
+        number_of_corrects += 1
+
+counter_best_case = n - right_break_point
+counter_worst_case = n - (left_break_point + number_of_corrects - 1)
+best_case_mod = 1 if counter_best_case % k == 0 and counter_best_case // k > 0 else 0
+worst_case_mod = 1 if counter_worst_case % k == 0 and counter_worst_case // k > 0 else 0
+best_case = counter_best_case + (counter_best_case // k - best_case_mod) * 5
+worst_case = counter_worst_case + (counter_worst_case // k - worst_case_mod) * 5
+
+print(best_case, worst_case)
