@@ -46,3 +46,30 @@
 
 
 n, k = map(int, input().split())
+best_case = 0
+worst_case = 0
+
+passwords = []
+for i in range(n):
+    passwords.append(input())
+
+correct_pwd = input()
+
+place_to_break = n - 1
+got_pwd = False
+same_length = 0
+time_taken = 0
+wrong_counter = 0
+for i in range(n - 1, -1, -1):
+    if wrong_counter >= k:
+        time_taken += 5
+        wrong_counter = 0
+    else:
+        time_taken += 1
+        wrong_counter += 1
+    if got_pwd and len(passwords[i]) != len(correct_pwd):
+        same_length = place_to_break - i + 1
+    if len(passwords[i]) == len(correct_pwd):
+        place_to_break = i
+        got_pwd = True
+
