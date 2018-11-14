@@ -36,3 +36,65 @@
 # output
 # 3 4
 
+s = input().strip()
+t = input().strip()
+
+yay = 0
+whoops = 0
+
+yay_map = [0] * 58
+whoops_map = [] * 58
+
+slength = len(s)
+tlength = len(t)
+
+s_map = [0] * 58
+t_map = [0] * 58
+up_low_distance = 32
+
+for i in range(slength):
+    s_map[ord(s[i]) - 65] += 1
+
+for i in range(tlength):
+    t_map[ord(t[i]) - 65] += 1
+
+for i in range(26):
+    # Go with YAY!
+    if t_map[i] >= s_map[i]:
+        yay += s_map[i]
+        t_map[i] -= s_map[i]
+        s_map[i] = 0
+    else:
+        yay += t_map[i]
+        s_map[i] -= t_map[i]
+        t_map[i] = 0
+
+    if t_map[i + up_low_distance] >= s_map[i + up_low_distance]:
+        yay += s_map[i + up_low_distance]
+        t_map[i + up_low_distance] -= s_map[i + up_low_distance]
+        s_map[i + up_low_distance] = 0
+    else:
+        yay += t_map[i + up_low_distance]
+        s_map[i + up_low_distance] -= t_map[i + up_low_distance]
+        t_map[i + up_low_distance] = 0
+
+    # Go with WHOOPS
+    if t_map[i] >= s_map[i + up_low_distance]:
+        whoops += s_map[i + up_low_distance]
+        t_map[i] -= s_map[i + up_low_distance]
+        s_map[i + up_low_distance] = 0
+    else:
+        whoops += t_map[i]
+        s_map[i + up_low_distance] -= t_map[i]
+        t_map[i] = 0
+
+    if t_map[i + up_low_distance] >= s_map[i]:
+        whoops += s_map[i]
+        t_map[i + up_low_distance] -= s_map[i]
+        s_map[i] = 0
+    else:
+        whoops += t_map[i + up_low_distance]
+        s_map[i] -= t_map[i + up_low_distance]
+        t_map[i + up_low_distance] = 0
+
+print(yay, whoops)
