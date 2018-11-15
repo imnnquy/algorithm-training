@@ -64,3 +64,6 @@ if first_smaller >= 0:
         result = s[:first_smaller] + chr(ord(s[first_smaller]) + 1) + s[first_smaller + 1:]
 
 print(result)
+
+
+#  New solution: +1 for s
