@@ -1,5 +1,5 @@
 # Problem from Codeforces
-# http://codeforces.com/problemset/problem/580/C
+# http://codeforces.com/problemset/problem/540/C
 
 
 import queue
