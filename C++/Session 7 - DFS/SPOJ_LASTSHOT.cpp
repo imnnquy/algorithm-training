@@ -1,70 +1,57 @@
 //  Problem from SPOJ
-//  https://www.spoj.com/problems/CAM5/
+//  https://www.spoj.com/problems/LASTSHOT/
 
 #include <iostream>
 #include <vector>
 #include <stack>
-
 using namespace std;
 
-int calc_disjoint_sets(int Ni, vector<vector<int>> graph) {
-    int result = 0;
-    vector<bool> visited;
-    for(int i = 0; i < Ni; i++) {
-        visited.push_back(false);
-    }
-    for (int i = 0; i < Ni; i++) {
-        if(visited[i]){
-            continue;
-        } else {
-            stack<int> s;
-            s.push(i);
-            visited[i] = true;
-            while (!s.empty()){
-                int u = s.top();
-                s.pop();
-                for (int j = 0; j < graph[u].size(); j++) {
-                    int v = graph[u][j];
-                    if (!visited[v]) {
-                        visited[v] = true;
-                        s.push(v);
-                    }
+int findMaximum(int N, vector<vector<int>> graph) {
+    int maxImpact = 0;
+
+    for(int i = 1; i <= N; i++) {
+        vector<bool> visited;
+        for(int x = 0; x <= N; x++) {
+            visited.push_back(false);
+        }
+        int currentImpact = 1;
+        stack<int> s;
+        s.push(i);
+        visited[i] = true;
+        while(s.size() > 0) {
+            int u = s.top();
+            s.pop();
+            for(int j = 0; j < graph[u].size(); j++) {
+                int v = graph[u][j];
+                if(!visited[v]) {
+                    s.push(v);
+                    visited[v] = true;
+                    currentImpact++;
                 }
             }
-            result++;
         }
-    }
+        if(currentImpact > maxImpact){
+            maxImpact = currentImpact;
+        }
 
-    return result;
+    }
+    return maxImpact;
 }
 
-int main()
-{
-    int t;
-    vector<int> results = vector<int>();
-    cin >> t;
-    for(int i = 0; i < t; i++) {
-        int Ni, ei;
-        cin >> Ni;
-        cin >> ei;
-        vector<vector<int>> graph;
-        for(int j = 0; j < Ni; j++) {
-            graph.push_back(vector<int>());
-        }
-        for(int j = 0; j < ei; j++) {
-            int start, end;
-            cin >> start >> end;
-            graph[start].push_back(end);
-            graph[end].push_back(start);
-        }
-        results.push_back(calc_disjoint_sets(Ni, graph));
+int main() {
+    int N, M;
+    vector<vector<int>> graph;
+    cin >> N >> M;
+    for(int i = 0; i < N+1; i++) {
+        graph.push_back(vector<int>());
     }
-    for(int i = 0; i < results.size() - 1; i++) {
-        std::cout << results[i] << std::endl;
+
+    for(int i = 0; i < M; i++) {
+        int A, B;
+        cin >> A >> B;
+        graph[A].push_back(B);
     }
-    if (results.size() > 0) {
-        cout << results[results.size() - 1];
-    }
+    cout << findMaximum(N, graph);
+
     return 0;
 }
-
