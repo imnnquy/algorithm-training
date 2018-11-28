@@ -4,3 +4,6 @@ venv1/
 *.iml
 .idea/
 CPP/CPP.xcodeproj/
+*.inp
+*.oac
+*.out
