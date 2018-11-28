@@ -1,5 +1,5 @@
 //  Problem from SPOJ
-//  https://www.spoj.com/problems/CAM5/
+//  http://www.spoj.com/problems/ALLIZWEL/
 
 #include <iostream>
 #include <vector>
