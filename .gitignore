@@ -3,3 +3,4 @@ venv/
 venv1/
 *.iml
 .idea/
+CPP/CPP.xcodeproj/
