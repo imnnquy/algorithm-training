@@ -5,6 +5,16 @@
         "deque": "cpp",
         "xstring": "cpp",
         "string": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "__bit_reference": "cpp",
+        "__hash_table": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "hash_map": "cpp",
+        "string_view": "cpp",
+        "unordered_map": "cpp",
+        "hashtable": "cpp",
+        "iostream": "cpp",
+        "stack": "cpp"
     }
 }

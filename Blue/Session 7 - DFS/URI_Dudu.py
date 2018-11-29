@@ -7,18 +7,20 @@ def sim_nao(N, graph):
 
     for i in range(1, N + 1):
         if not global_visited[i]:
-            visited = [False for i in range(N + 1)]
+            visited = [False for l in range(N + 1)]
             s = [i]
             global_visited[i] = True
             visited[i] = True
+            path = [0] * (N+1)
             while len(s) > 0:
                 u = s[-1]
                 s.pop()
                 for v in graph[u]:
                     if not visited[v]:
-                        s.append(v)
                         visited[v] = True
-                        global_visited[u] = True
+                        if not global_visited[v]:
+                            s.append(v)
+                            global_visited[u] = True
                     else:
                         return 'SIM'
 
