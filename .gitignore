@@ -7,3 +7,7 @@ CPP/CPP.xcodeproj/
 *.inp
 *.oac
 *.out
+*.depend
+*.layout
+CPP/CPP/obj/
+

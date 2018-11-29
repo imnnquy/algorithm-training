@@ -32,7 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="SPOJ_ABCPATH.cpp" />
+		<Unit filename="Session 7 - DFS/SPOJ_ABCPATH.cpp" />
+		<Unit filename="Session 7 - DFS/SPOJ_ALLIZWEL.cpp" />
+		<Unit filename="Session 7 - DFS/SPOJ_BENEFACT.cpp" />
+		<Unit filename="Session 7 - DFS/SPOJ_CAM5.cpp" />
+		<Unit filename="Session 7 - DFS/SPOJ_LASTSHOT.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />
