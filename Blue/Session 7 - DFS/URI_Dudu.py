@@ -2,23 +2,23 @@
 # https://www.urionlinejudge.com.br/judge/en/problems/view/1610
 
 
-def sim_nao(N, M, graph):
-    visited = [0 for i in range(N + 1)]
-    current_max_visit = 0
+def sim_nao(N, graph):
+    global_visited = [False for i in range(N+1)]
+
     for i in range(1, N + 1):
-        if visited[i] == 0:
+        if not global_visited[i]:
+            visited = [False for i in range(N + 1)]
             s = [i]
-            visited[i] = current_max_visit + 1
-            current_max_visit = visited[i]
+            global_visited[i] = True
+            visited[i] = True
             while len(s) > 0:
                 u = s[-1]
                 s.pop()
                 for v in graph[u]:
-                    if visited[v] == 0:
+                    if not visited[v]:
                         s.append(v)
-                        visited[v] = current_max_visit
-                    elif visited[v] < current_max_visit:
-                        continue
+                        visited[v] = True
+                        global_visited[u] = True
                     else:
                         return 'SIM'
 
@@ -45,7 +45,7 @@ def solution():
                     if not B in graph[A]:
                         graph[A].append(B)
                     break
-        results.append(sim_nao(N, M, graph))
+        results.append(sim_nao(N, graph))
 
     print(*results, sep='\n')
 
