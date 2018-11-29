@@ -8,7 +8,7 @@
 
 using namespace std;
 
-int findMaximum(int places, vector<vector<vector<int>>> graph) {
+vector<int> findMaximum(int startPoint, int places, vector<vector<vector<int>>> &graph) {
     int maxiMum = 0;
     stack<vector<int>> s;
     vector<bool> visited;
@@ -16,18 +16,21 @@ int findMaximum(int places, vector<vector<vector<int>>> graph) {
         visited.push_back(false);
     }
     vector<int> rootTree;
-    rootTree.push_back(1);
+    rootTree.push_back(startPoint);
     rootTree.push_back(0);
     s.push(rootTree);
-    visited[1] = true;
+    visited[startPoint] = true;
+
+    int maxNode = startPoint;
     while(!s.empty()) {
         int u = s.top()[0];
         int currentLength = s.top()[1];
         s.pop();
-        if(graph[u].size() == 0) {
+        if(graph[u].size() == 1) {
             if(maxiMum < currentLength) {
                 // cout << "Change max to: " << currentLength << endl;
                 maxiMum = currentLength;
+                maxNode = u;
             }
         }
         for(int i = 0; i < graph[u].size(); i++) {
@@ -43,7 +46,10 @@ int findMaximum(int places, vector<vector<vector<int>>> graph) {
             }
         }
     }
-    return maxiMum;
+    vector<int> result;
+    result.push_back(maxNode);
+    result.push_back(maxiMum);
+    return result;
 }
 
 int main()
@@ -64,9 +70,13 @@ int main()
             vector<int> endLength;
             endLength.push_back(end);
             endLength.push_back(length);
+            vector<int> startLength;
+            startLength.push_back(start);
+            startLength.push_back(length);
             graph[start].push_back(endLength);
+            graph[end].push_back(startLength);
         }
-        results.push_back(findMaximum(places, graph));
+        results.push_back(findMaximum(findMaximum(1, places, graph)[0], places, graph)[1]);
     }
     for(int i = 0; i < results.size() - 1; i++) {
         cout << results[i] << std::endl;
