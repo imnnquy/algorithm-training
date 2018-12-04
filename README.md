@@ -8,4 +8,4 @@ This repository contains both `Python` and `C++` as many solutions will get `TLE
 Most of the solutions are implemented in `Python`, `C++` is only used for ones which time limits are too strict.
 
 ## Tools
-I use [VSCode](https://code.visualstudio.com/ "VSCode") + [IORun extension](https://marketplace.visualstudio.com/items?itemName=hoangnc.io-run "IORun extension"), I'd recommend anyone interested in Competitive Programming to try this extension as it's really useful to run and test your result. Readmore about the extension here: https://marketplace.visualstudio.com/items?itemName=hoangnc.io-run
+I use [VSCode](https://code.visualstudio.com/ "VSCode" target="_blank") + [IORun extension](https://marketplace.visualstudio.com/items?itemName=hoangnc.io-run "IORun extension"), I'd recommend anyone interested in Competitive Programming to try this extension as it's really useful to run and test your result. Readmore about the extension here: https://marketplace.visualstudio.com/items?itemName=hoangnc.io-run
