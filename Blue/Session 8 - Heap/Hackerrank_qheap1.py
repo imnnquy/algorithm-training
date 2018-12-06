@@ -1,7 +1,6 @@
 #  Problem from Hackerrank
 #  https://www.hackerrank.com/challenges/qheap1/problem
 
-
 import heapq
 
 
@@ -13,17 +12,11 @@ def solution():
         query = input()
         if query.startswith('3'):
             while True:
-                delete_list_length = len(delete_list)
-                contain_in_delete = False
-                for j in range(delete_list_length):
-                    if my_list[0] == delete_list[j]:
-                        heapq.heappop(my_list)
-                        delete_list[j] = delete_list[-1]
-                        delete_list.pop()
-                        contain_in_delete = True
-                        break
-                if not contain_in_delete:
+                if my_list[0] not in delete_list:
                     break
+                pos = delete_list.index(my_list[0])
+                delete_list.pop(pos)
+                heapq.heappop(my_list)
 
             print(my_list[0])
         else:
@@ -35,4 +28,3 @@ def solution():
 
 
 solution()
-
