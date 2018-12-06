@@ -10,4 +10,4 @@ CPP/CPP.xcodeproj/
 *.depend
 *.layout
 CPP/CPP/obj/
-
+CPP/CPP/bin/
