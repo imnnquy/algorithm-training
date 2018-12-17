@@ -2,7 +2,7 @@
 #  https://www.hackerrank.com/challenges/qheap1/problem
 
 
-#  Using not in and index is faster than checking manual using for loop
+#  Using not in and index is faster than checking manually using for loop
 import heapq
 
 
