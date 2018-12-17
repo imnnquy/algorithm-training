@@ -16,5 +16,6 @@
         "hashtable": "cpp",
         "iostream": "cpp",
         "stack": "cpp"
-    }
+    },
+    "python.pythonPath": "venv/bin/python"
 }
