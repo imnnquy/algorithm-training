@@ -39,7 +39,6 @@ def solution():
             deleted_min.append(from_min)
 
             sum_prizes -= (from_max + from_min)
-            sum_prizes = sum_prizes % 1000000
 
     print(sum_prizes)
 
