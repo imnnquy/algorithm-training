@@ -69,17 +69,14 @@ def solution():
 
     N = int(inp.next())
 
-    matrix = [[False for j in range(MAX)] for i in range(MAX)]
-
-    graph = [[] for i in range(N)]
+    graph = [[] for i in range(MAX)]
     for i in range(N):
         A = int(inp.next())
         B = int(inp.next())
         W = int(inp.next())
-        if not matrix[A][B]:
-            matrix[A][B] = True
-            graph[A].append(Node(B, W))
-            graph[B].append(Node(A, W))
+
+        graph[A].append(Node(B, W))
+        graph[B].append(Node(A, W))
 
     U = int(inp.next())
     Q = int(inp.next())
