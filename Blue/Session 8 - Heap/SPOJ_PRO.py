@@ -5,6 +5,9 @@
 import heapq
 
 
+MAX = 1000005
+
+
 def solution():
 
     n = int(input())
@@ -12,8 +15,8 @@ def solution():
     max_heap = []
     min_heap = []
 
-    deleted_max = []
-    deleted_min = []
+    deleted_max = [0 for i in range(MAX)]
+    deleted_min = [0 for i in range(MAX)]
 
     for i in range(n):
         line = list(map(int, input().strip().split()))
@@ -26,17 +29,15 @@ def solution():
         if len(max_heap) >= 2:
             from_max = heapq.heappop(max_heap)
             from_min = heapq.heappop(min_heap)
-            while -from_max in deleted_min:
-                pos = deleted_min.index(-from_max)
-                deleted_min.pop(pos)
+            while deleted_min[-from_max] > 0:
+                deleted_min[-from_max] -= 1
                 from_max = heapq.heappop(max_heap)
-            while -from_min in deleted_max:
-                pos = deleted_max.index(-from_min)
-                deleted_max.pop(pos)
+            while deleted_max[-from_min] > 0:
+                deleted_max[-from_min] -= 1
                 from_min = heapq.heappop(min_heap)
 
-            deleted_max.append(from_max)
-            deleted_min.append(from_min)
+            deleted_max[from_max] += 1
+            deleted_min[from_min] += 1
 
             sum_prizes -= (from_max + from_min)
 
