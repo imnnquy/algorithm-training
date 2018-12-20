@@ -4,14 +4,31 @@
 
 import heapq
 import queue
+import sys
+
+
+class input_tokenizer:
+    __tokens = None
+
+    def has_next(self):
+        return self.__tokens != [] and self.__tokens != None
+
+    def next(self):
+        token = self.__tokens[-1]
+        self.__tokens.pop()
+        return token
+
+    def __init__(self):
+        self.__tokens = sys.stdin.read().split()[::-1]
+
+
+inp = input_tokenizer()
 
 
 def solution():
-    while True:
-        line = input().strip()
-        if not line:
-            return
-        N = int(line)
+    while inp.has_next():
+
+        N = int(inp.next())
         my_heap = []
         my_queue = queue.Queue()
         mystack = []
@@ -19,7 +36,8 @@ def solution():
         is_stack = 1
         is_queue = 1
         for i in range(N):
-            c_type, x = map(int, input().strip().split())
+            c_type = int(inp.next())
+            x = int(inp.next())
             if is_stack + is_queue + is_heap == 0:
                 continue
             if c_type == 1:
