@@ -1,5 +1,5 @@
 #  Problem from SPOJ
-#  https://www.spoj.com/problems/TRVCOST/
+#  https://www.spoj.com/problems/MICEMAZE/
 
 
 import heapq
@@ -36,13 +36,13 @@ class Node:
         return self.dist < other.dist
 
 
-def dijkstra(s, graph, queries):
+def dijkstra(E, T, N, graph):
 
-    dist = [-1 for x in range(MAX)]
-    path = [-1 for y in range(MAX)]
+    dist = [-1 for x in range(N+1)]
+    path = [-1 for y in range(N+1)]
     pqueue = []
-    heapq.heappush(pqueue, Node(s, 0))
-    dist[s] = 0
+    heapq.heappush(pqueue, Node(E, 0))
+    dist[E] = 0
 
     while len(pqueue) > 0:
         top = heapq.heappop(pqueue)
@@ -54,39 +54,32 @@ def dijkstra(s, graph, queries):
                 heapq.heappush(pqueue, Node(neighbor.id, dist[neighbor.id]))
                 path[neighbor.id] = u
 
-    results = []
-    nqueries = len(queries)
-    for i in range(nqueries):
-        if dist[queries[i]] != -1:
-            results.append(str(dist[queries[i]]))
-        else:
-            results.append('NO PATH')
+    result = 0
+    for i in range(1, N+1):
+        if 0 <= dist[i] <= T:
+            result += 1
 
-    return results
+    return result
 
 
 def solution():
 
     N = int(inp.next())
+    E = int(inp.next())
+    T = int(inp.next())
+    M = int(inp.next())
 
-    graph = [[] for i in range(MAX)]
-    for i in range(N):
+    graph = [[] for i in range(N + 1)]
+    for i in range(M):
         A = int(inp.next())
         B = int(inp.next())
         W = int(inp.next())
 
-        graph[A].append(Node(B, W))
         graph[B].append(Node(A, W))
 
-    U = int(inp.next())
-    Q = int(inp.next())
-    queries = []
-    for i in range(Q):
-        queries.append(int(inp.next()))
+    result = dijkstra(E, T, N, graph)
 
-    results = dijkstra(U, graph, queries)
-
-    print(*results, sep='\n')
+    print(result)
 
 
 solution()
