@@ -75,7 +75,6 @@ def solution():
 
         mx = 0
         for j in range(N):
-            # if j is not s and j is not d:
             p = dijkstra(N, s, j, graph)
             q = dijkstra(N, j, d, graph)
             mx = max(mx, p + q)
