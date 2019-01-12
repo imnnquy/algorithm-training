@@ -1,5 +1,5 @@
-#  Problem from SPOJ
-#  https://www.spoj.com/problems/TRVCOST/
+#  Problem from SHPATH
+#  https://www.spoj.com/problems/SHPATH/
 
 
 import heapq
@@ -15,7 +15,7 @@ class Node:
         return self.dist < other.dist
 
 
-def dijkstra(n, s, graph):
+def dijkstra(n, s, d, graph):
 
     dist = [-1 for x in range(n + 1)]
     pqueue = []
@@ -31,19 +31,20 @@ def dijkstra(n, s, graph):
                 dist[neighbor.id] = w + neighbor.dist
                 heapq.heappush(pqueue, Node(neighbor.id, dist[neighbor.id]))
 
-
-    return 1
+    return dist[d]
 
 
 def solution():
 
     s = int(input())
 
-    cities_index = {}
-
     for i in range(s):
-
-        n = int(input())
+        new_line = input().strip()
+        if not new_line:
+            n = int(input())
+        else:
+            n = int(new_line)
+        cities_index = {}
         graph = [[] for xx in range(n + 1)]
         for xxx in range(n):
 
@@ -54,9 +55,11 @@ def solution():
                 ct, we = map(int, input().strip().split())
                 graph[xxx + 1].append(Node(ct, we))
 
+        num_roads = int(input())
+        for nr in range(num_roads):
+            st, ds = map(str, input().strip().split())
 
-        results = dijkstra(U, graph, queries)
-
+            print(dijkstra(n, cities_index[st], cities_index[ds], graph))
 
 
 solution()
