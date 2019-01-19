@@ -33,55 +33,52 @@ class Node:
         return self.dist < other.dist
 
 
-def dijkstra(n, S, T, graph):
+def dijkstra(n, t, graph):
 
     dist = [-1 for x in range(n+1)]
     pqueue = []
-    heapq.heappush(pqueue, Node(S, 0))
-    dist[S] = 0
+    heapq.heappush(pqueue, Node(t, 0))
+    dist[t] = 0
 
     while len(pqueue) > 0:
         top = heapq.heappop(pqueue)
         u = top.id
         w = top.dist
         for neighbor in graph[u]:
-            if w + neighbor.dist < dist[neighbor.id] or dist[neighbor.id] == -1:
-                dist[neighbor.id] = w + neighbor.dist
+            if (neighbor.dist < dist[neighbor.id] and dist[u] < dist[neighbor.id]) or dist[neighbor.id] == -1:
+                dist[neighbor.id] = max(neighbor.dist, dist[u])
                 heapq.heappush(pqueue, Node(neighbor.id, dist[neighbor.id]))
-            if neighbor.id == T:
-                return dist[neighbor.id]
+
+    return dist
 
 
 def solution():
 
     T = int(inp.next())
-    results = []
     case_number = 0
 
     for i in range(T):
         case_number += 1
         N = int(inp.next())
-        R = int(inp.next())
-        graph = [[] for i in range(N + 1)]
-        for j in range(R):
+        M = int(inp.next())
+        graph = [[] for x in range(N + 1)]
+        for j in range(M):
             A = int(inp.next())
             B = int(inp.next())
+            W = int(inp.next())
 
-            graph[B].append(Node(A, 1))
-            graph[A].append(Node(B, 1))
+            graph[B].append(Node(A, W))
+            graph[A].append(Node(B, W))
 
-        s = int(inp.next())
-        d = int(inp.next())
+        t = int(inp.next())
 
-        mx = 0
-        for j in range(N):
-            p = dijkstra(N, s, j, graph)
-            q = dijkstra(N, j, d, graph)
-            mx = max(mx, p + q)
-
-        results.append('Case ' + str(case_number) + ': ' + str(mx))
-
-    print(*results, sep='\n')
+        print('Case ' + str(case_number) + ':')
+        dist = dijkstra(N, t, graph)
+        for d in dist:
+            if d > -1:
+                print(d)
+            else:
+                print('Impossible')
 
 
 solution()
