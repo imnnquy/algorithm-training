@@ -1,5 +1,5 @@
 #  Problem from LightOJ
-#  http://lightoj.com/volume_showproblem.php?problem=1174
+#  http://lightoj.com/volume_showproblem.php?problem=1002
 
 
 import heapq
