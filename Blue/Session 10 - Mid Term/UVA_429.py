@@ -86,6 +86,8 @@ def solution():
                     end = w
 
             print(queries[q][0], queries[q][1], dijkstra(n_words, start, end, graph), sep=' ')
+        if tc < N - 1:
+            print()
 
 
 solution()
