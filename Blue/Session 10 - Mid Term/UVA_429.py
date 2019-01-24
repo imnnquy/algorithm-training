@@ -4,6 +4,7 @@
 
 import heapq
 
+
 class Node:
     def __init__(self, id, dist):
         self.dist = dist
@@ -47,7 +48,10 @@ def solution():
 
         queries = []
         while True:
-            new_query = input().strip()
+            try:
+                new_query = input().strip()
+            except Exception as e:
+                break
             if not new_query:
                 break
             queries.append(list(map(str, new_query.split())))
