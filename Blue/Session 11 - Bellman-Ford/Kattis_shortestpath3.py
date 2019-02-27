@@ -39,14 +39,14 @@ def bellman_ford(N, M, E, q):
             if dist[u] != INF and dist[u] + w < dist[v]:
                 dist[v] = dist[u] + w
 
-    for i in range(N):
-        for j in range(M):
-            u = E[j][0]
-            v = E[j][1]
-            w = E[j][2]
-            if dist[u] != INF and dist[u] + w < dist[v]:
-                dist[v] = dist[u] + w
-                flag[v] = True
+    # for i in range(N):
+    for j in range(M):
+        u = E[j][0]
+        v = E[j][1]
+        w = E[j][2]
+        if dist[u] != INF and dist[u] + w < dist[v]:
+            dist[v] = dist[u] + w
+            flag[v] = True
 
     for cq in q:
         if flag[cq]:
