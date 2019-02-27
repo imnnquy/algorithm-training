@@ -48,7 +48,7 @@ def bellman_ford(N, M, E, q, case_number):
             flag[v] = True
 
     for cq in q:
-        if flag[cq] or dist[cq] < 3 or dist == INF:
+        if flag[cq] or dist[cq] < 3 or dist[cq] == INF:
             print('?')
         else:
             print(dist[cq])
