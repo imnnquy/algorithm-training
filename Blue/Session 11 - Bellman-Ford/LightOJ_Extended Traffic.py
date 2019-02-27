@@ -45,6 +45,7 @@ def bellman_ford(N, M, E, q, case_number):
         v = E[j][1]
         w = E[j][2]
         if dist[u] != INF and dist[u] + w < dist[v]:
+            dist[v] = dist[u] + w
             flag[v] = True
 
     for cq in q:
