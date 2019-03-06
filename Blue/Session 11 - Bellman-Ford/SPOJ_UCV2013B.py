@@ -24,15 +24,16 @@ def bellman_ford(N, M, E, q, case_number):
         v = E[j][1]
         w = E[j][2]
         if dist[u] != INF and dist[u] + w < dist[v]:
+            dist[v] = dist[u] + w
             flag[v] = True
 
     for cq in q:
-        if flag[cq]:
+        if flag[cq[1]]:
             print('NEGATIVE CYCLE')
-        elif dist[cq] == INF:
+        elif dist[cq[1]] == INF:
             print('NOT REACHABLE')
         else:
-            print(dist[cq])
+            print(dist[cq[1]])
 
 
 def solution():
@@ -49,14 +50,15 @@ def solution():
             monuments[x] = line[0]
             for i in range(1, N + 1):
                 if int(line[i]) != 0:
-                    E.append([x, i - 1, int(line[i])])
+                    if int(line[i]) < 0 or x != i - 1:
+                        E.append([x, i - 1, int(line[i])])
 
         nq = int(input())
         q = []
         for x in range(nq):
-            q.append(int(input()))
+            q.append(list(map(int, (input().split()))))
 
-        bellman_ford(N, len(E), E, q, counter + 1)
+        bellman_ford(N, len(E), E, q, counter)
         counter += 1
 
 
