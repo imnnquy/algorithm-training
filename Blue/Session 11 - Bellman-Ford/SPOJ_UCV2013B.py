@@ -1,17 +1,16 @@
 # Problem from SPOJ
 # https://www.spoj.com/problems/UCV2013B/
 
+from collections import defaultdict
 
 INF = int(1e9)
 
 
-def bellman_ford(N, M, E, q, case_number):
+def bellman_ford(N, M, E, query):
     dist = [INF for i in range(N + 1)]
     flag = [False for i in range(N + 1)]
 
-    print('Case #' + str(case_number) + ':')
-
-    dist[1] = 0
+    dist[query] = 0
     for i in range(0, N-1):
         for j in range(M):
             u = E[j][0]
@@ -27,13 +26,7 @@ def bellman_ford(N, M, E, q, case_number):
             dist[v] = dist[u] + w
             flag[v] = True
 
-    for cq in q:
-        if flag[cq[1]]:
-            print('NEGATIVE CYCLE')
-        elif dist[cq[1]] == INF:
-            print('NOT REACHABLE')
-        else:
-            print(dist[cq[1]])
+    return [dist, flag]
 
 
 def solution():
@@ -55,10 +48,34 @@ def solution():
 
         nq = int(input())
         q = []
+        queries = defaultdict(list)
         for x in range(nq):
-            q.append(list(map(int, (input().split()))))
+            pair = list(map(int, (input().split())))
+            q.append(pair)
+            queries[pair[0]].append(pair[1])
 
-        bellman_ford(N, len(E), E, q, counter)
+        print('Case #' + str(counter) + ':')
+
+        dists = [[] for x in range(N)]
+        neg_flags = [[] for x in range(N)]
+
+        for query in queries.keys():
+            bf_result = bellman_ford(N, len(E), E, query)
+            dists[query] = bf_result[0]
+            neg_flags[query] = bf_result[1]
+
+        for qq in q:
+            dist = dists[qq[0]][qq[1]]
+            is_neg = neg_flags[qq[0]][qq[1]]
+            if (dist < 0 and qq[0] == qq[1]) or is_neg:
+                print("NEGATIVE CYCLE")
+            else:
+                if dist == INF:
+                    dist = "NOT REACHABLE"
+                start_city = monuments[qq[0]]
+                dest_city = monuments[qq[1]]
+                print("{}-{} {}".format(start_city, dest_city, dist))
+
         counter += 1
 
 
