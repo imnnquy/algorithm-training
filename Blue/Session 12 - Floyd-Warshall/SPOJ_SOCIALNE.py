@@ -2,9 +2,6 @@
 # https://www.spoj.com/problems/SOCIALNE/
 
 
-INF = int(1e9)
-
-
 def floyd_warshall(M, matrix):
     dist = [[False] * M for i in range(M)]
     for i in range(M):
