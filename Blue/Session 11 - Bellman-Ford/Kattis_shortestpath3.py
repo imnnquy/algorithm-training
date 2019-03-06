@@ -1,5 +1,5 @@
-# Problem from LightOJ
-# http://www.lightoj.com/volume_showproblem.php?problem=1074
+# Problem from Kattis
+# https://open.kattis.com/problems/shortestpath3
 
 
 import sys
