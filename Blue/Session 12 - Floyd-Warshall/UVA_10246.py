@@ -18,7 +18,7 @@ def floyd_warshall(M, graph, case_number, queries, feast_cost):
             worst_feast_costs[i][j] = max_feast_cost
             worst_feast_costs[j][i] = max_feast_cost
 
-    for t in range(3):
+    for t in range(2):
         for k in range(M):
             for i in range(M):
                 for j in range(M):
@@ -39,12 +39,15 @@ def floyd_warshall(M, graph, case_number, queries, feast_cost):
 def solution():
     n_case = 1
     while True:
+
         line = input().strip()
         while not line:
             line = input().strip()
         C, R, Q = map(int, line.split())
         if C == 0:
             break
+        if n_case != 1:
+            print()
         feast_cost = list(map(int, input().strip().split()))
 
         graph = [[INF] * C for i in range(C)]
@@ -59,7 +62,7 @@ def solution():
             queries.append(query)
 
         floyd_warshall(C, graph, n_case, queries, feast_cost)
-        print()
+        # print()
         n_case += 1
 
 
