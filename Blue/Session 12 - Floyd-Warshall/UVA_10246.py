@@ -18,7 +18,7 @@ def floyd_warshall(M, graph, case_number, queries, feast_cost):
             worst_feast_costs[i][j] = max_feast_cost
             worst_feast_costs[j][i] = max_feast_cost
 
-    for t in range(2):
+    for t in range(3):
         for k in range(M):
             for i in range(M):
                 for j in range(M):
