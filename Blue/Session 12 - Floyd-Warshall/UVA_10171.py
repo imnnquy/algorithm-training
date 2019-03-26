@@ -1,7 +1,7 @@
 # Problem from UVA
 # https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=508
-import sys
-sys.stdout = open("file.txt", "w+")
+# import sys
+# sys.stdout = open("file.txt", "w+")
 
 INF = float(1e9)
 MAXN = 26
@@ -27,10 +27,10 @@ def floyd_warshall(young_graph, old_graph, start_young, start_old):
             d = young_graph[start_young][i] + old_graph[start_old][i]
             if d == min_dist:
                 if flag:
-                    print(' ', end='')
+                    print(' {:s}'.format(chr(ord('A') + i)), end='')
                 else:
                     flag = True
-                print('{:d} {:s}'.format(min_dist, chr(ord('A') + i)), end='')
+                    print('{:d} {:s}'.format(min_dist, chr(ord('A') + i)), end='')
         print()
 
 
@@ -70,10 +70,10 @@ def solution():
 
         start_young, start_old = map(lambda x: ord(x) - 65, input().strip().split())
 
-        if start_old == start_young:
-            print('{:d} {:s}'.format(0, chr(ord('A') + start_young)))
-        else:
-            floyd_warshall(young_graph, old_graph, start_young, start_old)
+        # if start_old == start_young:
+        #     print('{:d} {:s}'.format(0, chr(ord('A') + start_young)))
+        # else:
+        floyd_warshall(young_graph, old_graph, start_young, start_old)
 
 
 solution()
