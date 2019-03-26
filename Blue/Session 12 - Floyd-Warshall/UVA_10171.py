@@ -1,22 +1,22 @@
 # Problem from UVA
 # https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=508
-# import sys
-# sys.stdout = open("file.txt", "w+")
+import sys
+sys.stdout = open("file.txt", "w+")
 
 INF = float(1e9)
 MAXN = 26
 
 
-def floyd_warshall(youngGraph, oldGraph, start_young, start_old):
+def floyd_warshall(young_graph, old_graph, start_young, start_old):
     for k in range(MAXN):
         for i in range(MAXN):
             for j in range(MAXN):
-                youngGraph[i][j] = min(youngGraph[i][j], youngGraph[i][j] + youngGraph[k][j])
-                oldGraph[i][j] = min(oldGraph[i][j], oldGraph[i][j] + oldGraph[k][j])
+                young_graph[i][j] = min(young_graph[i][j], young_graph[i][k] + young_graph[k][j])
+                old_graph[i][j] = min(old_graph[i][j], old_graph[i][k] + old_graph[k][j])
 
     min_dist, min_i = INF, -1
     for i in range(MAXN):
-        d = youngGraph[start_young][i] + oldGraph[start_old][i]
+        d = young_graph[start_young][i] + old_graph[start_old][i]
         if d < min_dist:
             min_dist, min_i = d, i
     if min_dist >= INF:
@@ -24,7 +24,7 @@ def floyd_warshall(youngGraph, oldGraph, start_young, start_old):
     else:
         flag = False
         for i in range(MAXN):
-            d = youngGraph[start_young][i] + oldGraph[start_old][i]
+            d = young_graph[start_young][i] + old_graph[start_old][i]
             if d == min_dist:
                 if flag:
                     print(' ', end='')
@@ -35,7 +35,11 @@ def floyd_warshall(youngGraph, oldGraph, start_young, start_old):
 
 
 def solution():
+    counte = 1
     while True:
+        # if counte == 42:
+        #     print()
+        # counte += 1
         N = int(input().strip())
         if N == 0:
             break
