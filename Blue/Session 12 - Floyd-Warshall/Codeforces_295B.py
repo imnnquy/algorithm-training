@@ -10,7 +10,6 @@ INF = float(1e9)
 def floyd_warshall(N, matrix, del_list):
 
     ans = [0 for i in range(N + 1)]
-    flag = [False for i in range(N + 1)]
 
     for k in range(N, 0, -1):
         c = del_list[k]
