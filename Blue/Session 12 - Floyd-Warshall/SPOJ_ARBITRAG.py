@@ -1,51 +1,47 @@
-# Problem from Codeforces
-# http://codeforces.com/problemset/problem/295/B
+# Problem from SPOJ
+# https://www.spoj.com/problems/ARBITRAG/
 
 
 INF = float(1e9)
 # sys.stdout = open("file.txt", "w+")
 
 
-def floyd_warshall(N, matrix, del_list):
+def floyd_warshall(M, matrix):
 
-    ans = [0 for i in range(N + 1)]
+    for k in range(M):
+        for i in range(M):
+            for j in range(M):
+                if matrix[i][j] < matrix[i][k] * matrix[k][j]:
+                    matrix[i][j] = matrix[i][k] * matrix[k][j]
+    for i in range(M):
+        if matrix[i][i] > 1:
+            return 'Yes'
 
-    for k in range(N, 0, -1):
-        c = del_list[k]
-        for i in range(k + 1, N + 1):
-            a = del_list[i]
-            for j in range(k, N + 1):
-                b = del_list[j]
-                matrix[c][a] = min(matrix[c][a], matrix[c][b] + matrix[b][a])
-                matrix[a][c] = min(matrix[a][c], matrix[a][b] + matrix[b][c])
-
-        for i in range(k, N + 1):
-            a = del_list[i]
-            for j in range(k, N + 1):
-                b = del_list[j]
-                if a == b:
-                    continue
-                matrix[a][b] = min(matrix[a][b], matrix[a][c] + matrix[c][b])
-
-        for i in range(k, N + 1):
-            a = del_list[i]
-            for j in range(k, N + 1):
-                b = del_list[j]
-                ans[k] += matrix[a][b]
-
-    return ans[1:N+1]
+    return 'No'
 
 
 def solution():
-    N = int(input().strip())
-    matrix = [[]]
-    for i in range(N):
-        new_line = [0] + list(map(int, input().strip().split()))
-        matrix.append(new_line)
+    n_case = 1
+    while True:
+        line = input().strip()
+        while not line:
+            line = input().strip()
+        M = int(line)
+        if M == 0:
+            break
 
-    del_list = [0] + list(map(int, input().strip().split()))
+        my_dict = {}
+        for i in range(M):
+            my_dict[input().strip()] = i
 
-    print(*floyd_warshall(N, matrix, del_list), sep=' ')
+        exchanges = int(input().strip())
+        matrix = [[0.0] * M for i in range(M)]
+        for i in range(exchanges):
+            c1, rate, c2 = map(str, input().strip().split())
+            matrix[my_dict[c1]][my_dict[c2]] = float(rate)
+
+        print('Case ' + str(n_case) + ': ' + floyd_warshall(M, matrix))
+        n_case += 1
 
 
 solution()
