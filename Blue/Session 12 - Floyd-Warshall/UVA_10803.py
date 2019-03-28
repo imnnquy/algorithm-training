@@ -17,6 +17,9 @@ def floyd_warshall(M, towns):
                 graph[i][j] = math.sqrt(pow2_dist)
                 graph[j][i] = math.sqrt(pow2_dist)
 
+    for i in range(M):
+        graph[i][i] = 0
+
     dist = [[INF] * M for i in range(M)]
     for i in range(M):
         for j in range(M):
