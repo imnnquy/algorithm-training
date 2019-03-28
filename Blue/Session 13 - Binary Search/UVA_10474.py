@@ -32,6 +32,8 @@ def solution():
             else:
                 print('{:d} not found'.format(q))
 
+        case += 1
+
 
 solution()
 
