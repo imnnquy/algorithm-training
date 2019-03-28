@@ -7,21 +7,6 @@ INF = float(1e9)
 # sys.stdout = open("file.txt", "w+")
 
 
-class Marble:
-    def __init__(self, value, index):
-        self.value = value
-        self.index = index
-
-    def __lt__(self, other):
-        return self.value < other.value
-
-    def __eq__(self, other):
-        return self.value == other.value
-
-    def __gt__(self, other):
-        return self.value > other.value
-
-
 def solution():
     case = 1
     while True:
@@ -32,7 +17,7 @@ def solution():
 
         marbles = []
         for i in range(N):
-            marbles.append(Marble(int(input().strip()), i + 1))
+            marbles.append(int(input().strip()))
 
         # sorted(marbles)
         marbles.sort()
@@ -40,9 +25,9 @@ def solution():
         print('CASE# ' + str(case) + ':')
         for i in range(Q):
             q = int(input().strip())
-            result = bisect.bisect_left(marbles, Marble(q, 0))
+            result = bisect.bisect_left(marbles, q)
 
-            if marbles[result] == Marble(q, 0):
+            if 0 <= result < len(marbles) and marbles[result] == q:
                 print('{:d} found at {:d}'.format(q, result + 1))
             else:
                 print('{:d} not found'.format(q))
