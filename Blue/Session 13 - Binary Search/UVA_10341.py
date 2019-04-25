@@ -33,10 +33,10 @@ def solution():
                     print('{0:.4f}'.format(x))
                     has_solution = True
                     break
-                if result > epsilon:
-                    lo = x
-                if result < -epsilon:
+                if result * calc_result(p, q, r, s, t, u, lo) < 0:
                     hi = x
+                elif result * calc_result(p, q, r, s, t, u, hi) < 0:
+                    lo = x
             if not has_solution:
                 print('No solution')
 
