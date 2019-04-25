@@ -25,7 +25,7 @@ def solution():
                 continue
 
             has_solution = False
-            for i in range(1000000):
+            for i in range(1000):
                 x = (lo + hi) / 2
                 result = calc_result(p, q, r, s, t, u, x)
 
