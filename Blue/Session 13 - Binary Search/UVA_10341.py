@@ -4,6 +4,8 @@
 
 import math
 
+epsilon = math.pow(10, -9)
+
 
 def calc_result(p, q, r, s, t, u, x):
 
@@ -15,24 +17,28 @@ def solution():
         try:
             p, q, r, s, t, u= map(int, input().strip().split())
             lo, hi = 0, 1
-            if calc_result(p, q, r, s, t, u, lo) == 0:
+            if -epsilon < calc_result(p, q, r, s, t, u, lo) < epsilon:
                 print(lo)
                 continue
-            if calc_result(p, q, r, s, t, u, hi) == 0:
+            if -epsilon < calc_result(p, q, r, s, t, u, hi) < epsilon:
                 print(hi)
                 continue
 
+            has_solution = False
             for i in range(1000000):
                 x = (lo + hi) / 2
                 result = calc_result(p, q, r, s, t, u, x)
 
-                if result == 0:
-                    print(x)
+                if -epsilon < result < epsilon:
+                    print('{0:.4f}'.format(x))
+                    has_solution = True
                     break
-                if result > 0:
+                if result > epsilon:
                     lo = x
-                if result < 0:
+                if result < -epsilon:
                     hi = x
+            if not has_solution:
+                print('No solution')
 
         except Exception as e:
             break
