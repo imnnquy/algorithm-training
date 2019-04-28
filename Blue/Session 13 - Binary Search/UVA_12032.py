@@ -1,5 +1,5 @@
 # Problem from UVA
-# https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=31832
+# https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=3183
 # import sys
 
 
