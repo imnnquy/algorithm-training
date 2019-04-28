@@ -56,8 +56,10 @@ def find_min_loss(root, min_loss):
     if current_min_loss != -1 and min_loss > current_min_loss:
         min_loss = current_min_loss
 
-    find_min_loss(root.right, min_loss)
-    return find_min_loss(root.left, find_min_loss(root.right, min_loss))
+    min_loss_right = find_min_loss(root.right, min_loss)
+    min_loss_left = find_min_loss(root.left, min_loss_right)
+
+    return min_loss_left
 
 
 # Complete the minimumLoss function below.
