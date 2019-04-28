@@ -1,6 +1,6 @@
 # Problem from UVA
 # https://uva.onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1756
-import sys
+# import sys
 import re
 
 # sys.stdin = open("file.txt", "r")
@@ -41,6 +41,8 @@ def solution():
             new_words = list(map(lambda word: re.sub('[^a-z]+', '', word.lower()), re.compile(r'[^A-Za-z]').split(new_line)))
         except Exception:
             break
+
+        new_words = list(filter(lambda x: x is not '', new_words))
 
         if root is None:
             if len(new_words) > 0:
