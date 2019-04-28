@@ -28,14 +28,6 @@ def add_node(root, x):
     return root
 
 
-def search_node(root, x):
-    if root is None or root.value == x:
-        return root
-    if root.key < x:
-        return search_node(root.right, x)
-    return search_node(root.left, x)
-
-
 def max_value_node(root):
     current = root
     while current.right is not None:
