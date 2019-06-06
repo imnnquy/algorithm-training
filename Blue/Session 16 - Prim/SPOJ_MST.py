@@ -17,7 +17,6 @@ class Node:
 def prim(N, graph):
 
     dist = [-1 for x in range(N+1)]
-    path = [-1 for y in range(N+1)]
     visited = [False for i in range(N + 1)]
     pqueue = []
     heapq.heappush(pqueue, Node(1, 0))
@@ -33,7 +32,6 @@ def prim(N, graph):
             if not visited[v] and (w < dist[v] or dist[v] == -1):
                 dist[v] = w
                 heapq.heappush(pqueue, Node(v, w))
-                path[v] = u
 
     result = 0
     for i in range(1, N + 1):
