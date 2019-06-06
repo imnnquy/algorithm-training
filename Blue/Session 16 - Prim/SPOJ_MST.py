@@ -52,7 +52,7 @@ def solution():
         graph[A].append(Node(B, W))
         graph[B].append(Node(A, W))
 
-    result = prim(M, graph)
+    result = prim(N, graph)
 
     print(result)
 
