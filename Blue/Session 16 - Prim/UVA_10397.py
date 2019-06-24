@@ -72,7 +72,7 @@ def solution():
 
         result = prim(n, graph)
 
-        print("{0:.3}".format(result))
+        print("{:.2f}".format(result))
 
 
 solution()
