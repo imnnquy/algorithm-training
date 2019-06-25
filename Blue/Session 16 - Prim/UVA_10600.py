@@ -17,6 +17,7 @@ class Node:
 def prim(N, graph):
 
     dist = [-1 for x in range(N+1)]
+    path = [-1 for x in range(N + 1)]
     visited = [False for i in range(N + 1)]
     pqueue = []
     heapq.heappush(pqueue, Node(1, 0))
@@ -31,14 +32,15 @@ def prim(N, graph):
             w = graph[u][i]
             if not visited[v] and w != -1 and (w < dist[v] or dist[v] == -1):
                 dist[v] = w
+                path[v] = u
                 heapq.heappush(pqueue, Node(v, w))
 
-    result = 0
+    mst_cost = 0
     for i in range(1, N + 1):
         if dist[i] != -1:
-            result += dist[i]
+            mst_cost += dist[i]
 
-    return result
+    return path, mst_cost
 
 
 def solution():
@@ -53,9 +55,21 @@ def solution():
             graph[A][B] = C
             graph[B][A] = C
 
-        result = prim(N, graph)
+        mst, mst_cost = prim(N, graph)
 
-        print("{}".format(result))
+        second_mst_cost = 1e9
+        for i in range(len(mst)):
+            if mst[i] != -1:
+                tmp_weight = graph[i][mst[i]]
+                graph[i][mst[i]] = -1
+                graph[mst[i]][i] = -1
+                current_mst, current_mst_cost = prim(N, graph)
+                if current_mst_cost < second_mst_cost:
+                    second_mst_cost = current_mst_cost
+                graph[i][mst[i]] = tmp_weight
+                graph[mst[i]][i] = tmp_weight
+
+        print(mst_cost, second_mst_cost)
 
 
 solution()
