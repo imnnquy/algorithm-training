@@ -26,10 +26,10 @@ def prim(N, graph):
         top = heapq.heappop(pqueue)
         u = top.id
         visited[u] = True
-        for neighbor in graph[u]:
-            v = neighbor.id
-            w = neighbor.dist
-            if not visited[v] and (w < dist[v] or dist[v] == -1):
+        for i in range(1, N + 1):
+            v = i
+            w = graph[u][i]
+            if not visited[v] and w != -1 and (w < dist[v] or dist[v] == -1):
                 dist[v] = w
                 heapq.heappush(pqueue, Node(v, w))
 
@@ -47,11 +47,11 @@ def solution():
     for i in range(T):
         N, M = map(int, input().strip().split())
 
-        graph = [[] for i in range(N + 1)]
+        graph = [[-1 for j in range(N + 1)] for i in range(N + 1)]
         for i in range(M):
             A, B, C = map(int, input().strip().split())
-            graph[A].append(Node(B, C))
-            graph[B].append(Node(A, C))
+            graph[A][B] = C
+            graph[B][A] = C
 
         result = prim(N, graph)
 

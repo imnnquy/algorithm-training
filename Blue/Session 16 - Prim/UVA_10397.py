@@ -30,7 +30,7 @@ def prim(N, graph):
         for i in range(N):
             v = i
             w = graph[u][i]
-            if not visited[v] and (w < dist[v] or dist[v] == -1.0):
+            if not visited[v] and w != -1 and (w < dist[v] or dist[v] == -1.0):
                 dist[v] = w
                 heapq.heappush(pqueue, Node(v, w))
 
