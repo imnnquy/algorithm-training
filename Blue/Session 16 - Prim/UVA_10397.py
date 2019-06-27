@@ -4,6 +4,27 @@
 
 import math
 import heapq
+import sys
+
+
+
+class input_tokenizer:
+    __tokens = None
+
+    def has_next(self):
+        return self.__tokens != [] and self.__tokens != None
+
+    def next(self):
+        token = self.__tokens[-1]
+        self.__tokens.pop()
+        return token
+
+    def __init__(self):
+        self.__tokens = sys.stdin.read().split()[::-1]
+
+
+inp = input_tokenizer()
+
 
 
 class Node:
@@ -50,12 +71,13 @@ def solution():
 
     while True:
         try:
-            n = int(input())
+            n = int(inp.next())
         except:
             return
         cities = []
         for i in range(n):
-            x, y = map(int, input().split())
+            x = int(inp.next())
+            y = int(inp.next())
             cities.append([x, y])
         graph = [[-1.0 for j in range(n + 1)] for i in range(n + 1)]
         for i in range(n):
@@ -64,9 +86,10 @@ def solution():
                 graph[i][j] = distij
                 graph[j][i] = distij
 
-        m = int(input())
+        m = int(inp.next())
         for i in range(m):
-            x, y = map(int, input().split())
+            x = int(inp.next())
+            y = int(inp.next())
             graph[x - 1][y - 1] = 0
             graph[y - 1][x - 1] = 0
 
