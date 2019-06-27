@@ -7,7 +7,6 @@ import heapq
 import sys
 
 
-
 class input_tokenizer:
     __tokens = None
 
@@ -24,7 +23,6 @@ class input_tokenizer:
 
 
 inp = input_tokenizer()
-
 
 
 class Node:
