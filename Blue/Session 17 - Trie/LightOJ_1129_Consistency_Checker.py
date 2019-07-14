@@ -16,6 +16,8 @@ def add_word(root, s):
         tmp = tmp.child[ch]
         if tmp.countWord > 0:
             return False
+    if len(tmp.child) > 0:
+        return False
     tmp.countWord += 1
     return True
 
