@@ -37,14 +37,14 @@ def add_word(root, s):
             return False, s
 
     if len(tmp.child) > 0:
-        result = s
-        while len(tmp.child) > 0:
-            for key in tmp.child:
-                result += key
-                tmp = tmp.child[key]
-                break
+        # result = s
+        # while len(tmp.child) > 0:
+        #     for key in tmp.child:
+        #         result += key
+        #         tmp = tmp.child[key]
+        #         break
 
-        return False, result
+        return False, s
     tmp.countWord += 1
     return 'GOOD SET'
 
