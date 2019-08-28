@@ -42,9 +42,9 @@ def has_same_opinion(opinions1, opinions2, length):
 
 def solution():
 
-    T = int(input())
+    TC = int(input())
     input()
-    for t in range(T):
+    for t in range(TC):
 
         P, T = map(int, input().split())
 
@@ -80,7 +80,8 @@ def solution():
                 opinions_set[leader] = 1
 
         print(len(opinions_set))
-        print()
+        if t != TC - 1:
+            print()
 
 
 solution()
