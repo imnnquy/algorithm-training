@@ -2,18 +2,18 @@
 # http://codeforces.com/problemset/problem/468/B
 
 
-parent = dict()
-ranks = dict()
+parent = []
+ranks = []
 
 
-def make_set():
+def make_set(N):
     global parent, ranks
-    parent = dict()
-    ranks = dict()
+    parent = [i for i in range(N + 5)]
+    ranks = [0 for i in range(N + 5)]
 
 
 def find_set(u):
-    if parent.get(u) is not None and parent[u] is not u:
+    if parent[u] != u:
         parent[u] = find_set(parent[u])
     else:
         parent[u] = u
@@ -23,10 +23,6 @@ def find_set(u):
 def union_set(u, v):
     up = find_set(u)
     vp = find_set(v)
-    if ranks.get(up) is None:
-        ranks[up] = 1
-    if ranks.get(vp) is None:
-        ranks[vp] = 1
 
     if ranks[up] > ranks[vp]:
         parent[vp] = up
@@ -44,7 +40,7 @@ def solution():
     A = n + 1
     B = A + 1
 
-    make_set()
+    make_set(n)
     for i in range(n):
         set_indicators[numbers[i]] = i
 
