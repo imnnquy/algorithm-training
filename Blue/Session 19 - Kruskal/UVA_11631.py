@@ -47,8 +47,8 @@ def union_set(u, v):
 def kruskal(number_of_cities):
     graph.sort(key=lambda _edge: _edge.weight)
     i = 0
-    saved = 0
-    while len(dist) != number_of_cities - 1:
+    mst = 0
+    while len(dist) != number_of_cities - 1 and i < len(graph):
         edge = graph[i]
         i += 1
         u = find_set(edge.source)
@@ -56,13 +56,12 @@ def kruskal(number_of_cities):
         if u != v:
             dist.append(edge)
             union_set(u, v)
-        else:
-            saved += edge.weight
+            mst += edge.weight
 
-    for j in range(i, len(graph)):
-        saved += graph[j].weight
-
-    return saved
+    if len(dist) == number_of_cities - 1:
+        return mst
+    else:
+        return 'Impossible'
 
 
 def solution():
@@ -71,16 +70,23 @@ def solution():
         global graph, dist
         graph = []
         dist = []
-        m, n = map(int, input().split())
-        if m == 0:
+        station_dictionary = {}
+        s, c = map(int, input().split())
+        if s == 0:
             break
-        for _ in range(n):
-            x, y, z = map(int, input().split())
-            graph.append(Triad(x, y, z))
 
-        make_set(m)
+        for i in range(s):
+            station = input().strip()
+            station_dictionary[station] = i
+        for _ in range(c):
+            x, y, z = input().split()
+            graph.append(Triad(station_dictionary[x], station_dictionary[y], int(z)))
 
-        print(kruskal(m))
+        input()
+
+        make_set(s)
+
+        print(kruskal(s))
 
 
 solution()
