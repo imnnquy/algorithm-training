@@ -44,11 +44,11 @@ def union_set(u, v):
         ranks[vp] += 1
 
 
-def kruskal(number_of_cities):
+def kruskal(number_of_fields):
     graph.sort(key=lambda _edge: _edge.weight)
     i = 0
     mst = 0
-    while len(dist) != number_of_cities - 1 and i < len(graph):
+    while len(dist) != number_of_fields - 1 and i < len(graph):
         edge = graph[i]
         i += 1
         u = find_set(edge.source)
@@ -58,7 +58,7 @@ def kruskal(number_of_cities):
             union_set(u, v)
             mst += edge.weight
 
-    if len(dist) == number_of_cities - 1:
+    if len(dist) == number_of_fields - 1:
         return mst
     else:
         return -1
